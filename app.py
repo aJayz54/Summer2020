@@ -35,6 +35,10 @@ def profile(user=None):
     user=user or "Andrew"
     return render_template ('profile.html', user=user)
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template ('aboutus.html');
+
 @app.route('/classes')
 def classes():
     return render_template ('classes.html', classes=CLASSES)
