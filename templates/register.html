@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 
 {% block container %}
-    <center>
-    <h1>Register</h1>
+<style>
+    .left {
+        position: absolute;
+        left: 375px;
+        width: 300px;
+    }
+</style>
+    <center><h1>Register</h1></center>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -35,5 +41,4 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
-    </center>
 {% endblock %}
