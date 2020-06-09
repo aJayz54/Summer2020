@@ -11,6 +11,7 @@
     <center><h1>Register</h1></center>
     <form action="" method="post">
         {{ form.hidden_tag() }}
+        <div class = "left">
         <p>
             {{ form.username.label }}<br>
             {{ form.username(size=32) }}<br>
@@ -40,5 +41,6 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
+    </div>
     </form>
 {% endblock %}
