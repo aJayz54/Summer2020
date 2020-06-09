@@ -41,6 +41,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    classes = db.relationship('Classes', backref='Client', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username) 
@@ -50,6 +51,17 @@ class User(UserMixin, db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def check_classes(self):
+        return Classes.query.filter(Classes.user_id==self.id)
+
+class Classes(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True)
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Classes {}>'.format(self.name)
 
 from forms import LoginForm, RegistrationForm
 
@@ -66,14 +78,19 @@ def home():
     return render_template ('home.html')
 
 @app.route('/profile')
-@app.route('/profile/<user>')
 @login_required
 def profile():
-    return render_template ('profile.html')
+    return redirect(url_for('user', user=current_user.username))
+
+@app.route('/user/<user>')
+@login_required
+def user(user):
+    classeS=current_user.check_classes().all()
+    return render_template ('profile.html', classlist=classeS)
 
 @app.route('/aboutus')
 def aboutus():
-    return render_template ('aboutus.html');
+    return render_template ('aboutus.html')
 
 @app.route('/classes')
 def classes():

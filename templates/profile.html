@@ -3,6 +3,10 @@
 {% block container %}
     <div class="top-pad">
         <h1>Hello {{ current_user.username }}!</h1>
+        <p> You are signed up for: </p>
+        {% for class in classlist %}
+        <p> {{ class.name }}</p>
+        {% endfor %}
         <p>This is your profile!</p>
     </div>
 {% endblock %}
