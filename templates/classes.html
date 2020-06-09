@@ -9,6 +9,10 @@
             <h1 class="display-4">{{class['name']}}</h1>
             <p class="lead">$ {{class['price']}}</p>
             <p class="lead">{{class['time']}}</p>
+            <form action="{{ url_for('signup', classname=class['name']) }}" method=POST>
+                {{ form.hidden_tag() }}
+                {{ form.submit(value='Register') }}
+            </form>
          </div>
         {% endfor %}
     </div>

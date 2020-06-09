@@ -26,4 +26,5 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('This email address is already registered.')
 
-    
+class EmptyForm(FlaskForm):
+    submit=SubmitField('Submit')

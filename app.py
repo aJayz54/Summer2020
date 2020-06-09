@@ -63,7 +63,7 @@ class Classes(db.Model):
     def __repr__(self):
         return '<Classes {}>'.format(self.name)
 
-from forms import LoginForm, RegistrationForm
+from forms import LoginForm, RegistrationForm, EmptyForm
 
 @login.user_loader
 def load_user(id):
@@ -92,9 +92,19 @@ def user(user):
 def aboutus():
     return render_template ('aboutus.html')
 
-@app.route('/classes')
+@app.route('/classes', methods=['GET', 'POST'])
 def classes():
-    return render_template ('classes.html', classes=CLASSES)
+    form = EmptyForm()
+    return render_template ('classes.html', classes=CLASSES, form=form)
+
+@app.route('/signup/<classname>', methods=['GET', 'POST'])
+@login_required
+def signup(classname):
+    flash('You have signed up for '+classname)
+    c=Classes(name=classname, Client=current_user)
+    db.session.add(c)
+    db.session.commit()
+    return redirect(url_for('classes'))
 
 @app.route('/')
 def blank():
