@@ -85,8 +85,9 @@ def profile():
 @app.route('/user/<user>')
 @login_required
 def user(user):
+    form=EmptyForm()
     classeS=current_user.check_classes().all()
-    return render_template ('profile.html', classlist=classeS)
+    return render_template ('profile.html', classlist=classeS,form=form)
 
 @app.route('/aboutus')
 def aboutus():
@@ -100,12 +101,29 @@ def classes():
 @app.route('/signup/<classname>', methods=['GET', 'POST'])
 @login_required
 def signup(classname):
-    flash('You have signed up for '+classname)
-    c=Classes(name=classname, Client=current_user)
-    db.session.add(c)
-    db.session.commit()
+    classeS=current_user.check_classes().all()
+    alreadysignedup=0
+    for aclass in classeS:
+        if aclass.name==classname:
+            alreadysignedup=1
+    if alreadysignedup==0:
+        flash('You have signed up for '+classname)
+        c=Classes(name=classname, Client=current_user)
+        db.session.add(c)
+        db.session.commit()
+    else:
+        flash('You have already signed up for '+classname)
     return redirect(url_for('classes'))
 
+@app.route('/unregister/<classname>', methods=['GET', 'POST'])
+@login_required
+def unregister(classname):
+    classeS=current_user.check_classes().all()
+    for aclass in classeS:
+        if aclass.name==classname:
+            db.session.delete(aclass)
+    db.session.commit()
+    return redirect(url_for('profile'))
 @app.route('/')
 def blank():
     return redirect(url_for('login'))
