@@ -98,6 +98,10 @@ def classes():
     form = EmptyForm()
     return render_template ('classes.html', classes=CLASSES, form=form)
 
+@app.route('/contactus')
+def contactus():
+    return render_template ('contactus.html')
+
 @app.route('/signup/<classname>', methods=['GET', 'POST'])
 @login_required
 def signup(classname):

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Summer 2020 Tutoring Thing</title>
+        <title>Summer 2020 Tutoring</title>
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     </head>
@@ -27,13 +27,16 @@
                 </ul>
             </div>
             <div class="mx-auto order-0">
-                <a class="navbar-brand mx-auto" href="#">Summer 2020 Tutoring Thing</a>
+                <a class="navbar-brand mx-auto" href="#">Summer 2020 Tutoring</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
+                   <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contactus') }}">Contact Us</a>
+                    </li> 
                     <li class="nav-item">
                         {% if current_user.is_anonymous %}
                         <a class="nav-link" href="{{ url_for('login') }}">Log-In</a>
@@ -41,6 +44,8 @@
                         <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
                         {% endif %}
                     </li>
+
+                    
                 </ul>
             </div>
         </nav>
