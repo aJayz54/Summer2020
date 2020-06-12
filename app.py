@@ -126,7 +126,7 @@ def unregister(classname):
     return redirect(url_for('profile'))
 @app.route('/')
 def blank():
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
