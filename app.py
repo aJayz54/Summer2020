@@ -5,6 +5,9 @@ from config import Config
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.urls import url_parse
 from flask_login import LoginManager, UserMixin, login_required, current_user, login_user, logout_user
+from flask_mail import Mail
+from time import time
+import jwt
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -12,6 +15,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login=LoginManager(app)
 login.login_view='login'
+mail=Mail(app)
 
 CLASSES = {
     'SAT Tutoring' : {
@@ -54,6 +58,20 @@ class User(UserMixin, db.Model):
 
     def check_classes(self):
         return Classes.query.filter(Classes.user_id==self.id)
+    
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, app.config['SECRET_KEY'],
+                            algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)
 
 class Classes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -63,7 +81,7 @@ class Classes(db.Model):
     def __repr__(self):
         return '<Classes {}>'.format(self.name)
 
-from forms import LoginForm, RegistrationForm, EmptyForm
+from forms import LoginForm, RegistrationForm, EmptyForm, ResetPasswordRequestForm, ResetPasswordForm
 
 @login.user_loader
 def load_user(id):
@@ -93,6 +111,36 @@ def user(user):
 def aboutus():
     return render_template ('aboutus.html')
 
+from emails import send_password_reset_email, send_registered_email, send_unregistered_email
+@app.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html',
+                           title='Reset Password', form=form)
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
+
 @app.route('/classes', methods=['GET', 'POST'])
 def classes():
     form = EmptyForm()
@@ -115,6 +163,7 @@ def signup(classname):
         c=Classes(name=classname, Client=current_user)
         db.session.add(c)
         db.session.commit()
+        send_registered_email(current_user, classname)
     else:
         flash('You have already signed up for '+classname)
     return redirect(url_for('classes'))
@@ -126,6 +175,7 @@ def unregister(classname):
     for aclass in classeS:
         if aclass.name==classname:
             db.session.delete(aclass)
+            send_unregistered_email(current_user, classname)
     db.session.commit()
     return redirect(url_for('profile'))
 @app.route('/')

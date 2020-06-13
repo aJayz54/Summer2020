@@ -1,0 +1,5 @@
+Dear Andrew, 
+
+{{ user.username }} has registered for {{ classname }}
+
+Cool. 
