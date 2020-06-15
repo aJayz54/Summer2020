@@ -7,7 +7,7 @@
         {% for id, class in classes.items() %}
          <div class="jumbotron">
             <h1 class="display-4">{{class['name']}}</h1>
-            <p class="lead">$ {{class['price']}}</p>
+            <p class="lead">{{class['price']}}</p>
             <p class="lead">{{class['time']}}</p>
             <form action="{{ url_for('signup', classname=class['name']) }}" method=POST>
                 {{ form.hidden_tag() }}
@@ -15,5 +15,9 @@
             </form>
          </div>
         {% endfor %}
+        <div class="jumbotron">
+                <h1 class="display-4">One-on-One Tutoring</h1>
+                <p class="lead">$20/hr</p>
+                <p class="lead">Contact us for individual tutoring sessions! We offer individual tutoring for math, english, SAT essay writing, and much more! Send us an email if you're interested.</p>
     </div>
 {% endblock %}

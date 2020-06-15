@@ -18,25 +18,35 @@ login.login_view='login'
 mail=Mail(app)
 
 CLASSES = {
-    'SAT Tutoring' : {
-        'name': 'SAT Tutoring',
-        'price': 'insert price here',
-        'time': 'insert times here',
+    'Competition Math: Intro to Algebra' : {
+        'name': 'Algebra',
+        'price': '$10/hr',
+        'time': 'Tuesday, Thursday, and Saturday from 2-3:30 PST.',
     },
-    'Debate' : {
-        'name': 'Debate',
-        'price': 'insert price here',
-        'time': 'insert times here',
+    'Competition Math: Number Theory' : {
+        'name': 'Number Theory',
+        'price': '$10/hr',
+        'time': 'Monday, Wednesday, and Friday from 1-3 PST.'
     },
-    'Advanced Math' : {
-        'name': 'Advanced Math',
-        'price': 'insert price here',
-        'time': 'insert times here',
+    'Competition Math: Probability' : {
+        'name': 'Probability',
+        'price': '$10/hr',
+        'time': 'Monday, Wednesday, and Friday from 10 AM - 12 PM PST.',
     },
-    'Writing and Grammar' : {
-        'name': 'Writing and Grammar',
-        'price': 'insert price here',
-        'time': 'insert times here',
+    'Competition Math: Intro to MathCounts' : {
+        'name': 'MathCounts',
+        'price': '$10/hr',
+        'time': 'Tuesday, Thursday, and Saturday from 11 AM - 1 PM PST.'
+    },
+    'Intro to Debate' : {
+        'name': 'Intro Debate',
+        'price': '$10/hr',
+        'time': 'Monday, Wednesday, and Friday from 11 AM - 1 PM PST.',
+    },
+    'Advanced Debate' : {
+        'name': 'Advanced Debate',
+        'price': '$10/hr',
+        'time': 'Monday, Wednesday, and Friday from 2 PM - 3:30 PM PST.',
     }
 }
 
