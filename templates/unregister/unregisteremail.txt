@@ -3,4 +3,4 @@
 <p>{{ user.username }} has unregistered for {{ classname }}.</p>
 
 <p>Sincerely,</p>
-<p>Tutoring Company Name</p>
+<p>East Bay Academics</p>

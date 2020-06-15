@@ -10,7 +10,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
 
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
-    send_email('[Summer 2020] Reset Your Password',
+    send_email('[East Bay Academics] Reset Your Password',
                sender=app.config['ADMINS'][0],
                recipients=[user.email],
                text_body=render_template('email/reset_password.txt',
@@ -21,7 +21,7 @@ def send_password_reset_email(user):
 def send_registered_email(user, classname):
     send_email('[Summer 2020] New Client Register',
                sender=app.config['ADMINS'][0],
-               recipients=['TestwebsiteSummer2020@gmail.com'],
+               recipients=['eastbayacademics@gmail.com'],
                text_body=render_template('register/registeremail.txt',
                                          user=user, classname=classname),
                html_body=render_template('register/registeremail.html',
@@ -30,7 +30,7 @@ def send_registered_email(user, classname):
 def send_unregistered_email(user, classname):
     send_email('[Summer 2020] Client Unregister',
                sender=app.config['ADMINS'][0],
-               recipients=['TestwebsiteSummer2020@gmail.com'],
+               recipients=['eastbayacademics@gmail.com'],
                text_body=render_template('unregister/unregisteremail.txt',
                                          user=user, classname=classname),
                html_body=render_template('unregister/unregisteremail.html',

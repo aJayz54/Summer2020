@@ -1,4 +1,4 @@
-Dear Andrew, 
+Dear Tutors, 
 
 {{ user.username }} has registered for {{ classname }}
 
