@@ -3,12 +3,16 @@
 {% block container %}
     <div class="top-pad">
         <h1>Classes Offered</h1>
+        <h5>Note: Certain classes have a minimum number of students necessary in order to be able to occur. In the event that not enough students have enrolled, parents will be notified immediately and classes may be cancelled.</h3>
         <br>
         {% for id, class in classes.items() %}
          <div class="jumbotron">
             <h1 class="display-4">{{class['name']}}</h1>
-            <p class="lead">{{class['price']}}</p>
-            <p class="lead">{{class['time']}}</p>
+            <h1 class="display-6">{{class['time']}}</h1>
+            <h1 class="display-6">{{class['price']}}</h1>
+            <br>
+            <p class="lead">{{class['blurb']}}</p>
+            </p>
             <form action="{{ url_for('signup', classname=class['name']) }}" method=POST>
                 {{ form.hidden_tag() }}
                 {{ form.submit(value='Register') }}
@@ -17,7 +21,8 @@
         {% endfor %}
         <div class="jumbotron">
                 <h1 class="display-4">One-on-One Tutoring</h1>
-                <p class="lead">$20/hr</p>
+                <h1 class="display-6">$20/hr</p>
+                <br>
                 <p class="lead">Contact us for individual tutoring sessions! We offer individual tutoring for math, english, SAT essay writing, and much more! Send us an email if you're interested.</p>
     </div>
 {% endblock %}

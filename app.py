@@ -18,35 +18,41 @@ login.login_view='login'
 mail=Mail(app)
 
 CLASSES = {
-    'Competition Math: Intro to Algebra' : {
-        'name': 'Algebra',
+    'A' : {
+        'name': 'Intro to Algebra',
         'price': '$10/hr',
         'time': 'Tuesday, Thursday, and Saturday from 2-3:30 PST.',
+        'blurb':'Intro Algebra is aimed to introduce students to core concepts that they will engage with in their Algebra classes. Ideas such as systems of equations and inequalities will be explored to help prepare them for the upcoming term.',
     },
-    'Competition Math: Number Theory' : {
-        'name': 'Number Theory',
+    'B' : {
+        'name': 'Competition Math: Number Theory',
         'price': '$10/hr',
-        'time': 'Monday, Wednesday, and Friday from 1-3 PST.'
+        'time': 'Monday, Wednesday, and Friday from 1-3 PST.',
+        'blurb':'This course will be a basic guide to applications of number theory in math competitions. Although most of it will be instructional, lectures will be supplemented with actual number theory problems from contests so students can also develop their problem solving skills and apply what they have learned. Problems in this course will range from MathCounts difficulty all the way up to the AIME. A background in Algebra is strongly recommended for this course.',
     },
-    'Competition Math: Probability' : {
-        'name': 'Probability',
+    'C' : {
+        'name': 'Competition Math: Probability',
         'price': '$10/hr',
         'time': 'Monday, Wednesday, and Friday from 10 AM - 12 PM PST.',
+        'blurb':'In this class, we will cover and learn from David Patrick\'s Introduction to Counting and Probability, learning a variety of concepts including Combinatorics, Complementary Counting, Casework, Geometric Probability, Expected Value, the Binomial Theorem, and more. Problems in this class will range from MATHCOUNTS to AIME level difficulty, and the concepts covered can be used in various math competitions. By taking this course, one will gain a solid understanding of basic Counting and Probability, provided they work through class and homework problems with diligence.',
     },
-    'Competition Math: Intro to MathCounts' : {
-        'name': 'MathCounts',
+    'E' : {
+        'name': 'Intro to MathCounts',
         'price': '$10/hr',
-        'time': 'Tuesday, Thursday, and Saturday from 11 AM - 1 PM PST.'
+        'time': 'Tuesday, Thursday, and Saturday from 11 AM - 1 PM PST.',
+        'blurb':'In this class, we will work through MATHCOUNTS competitions of varying difficulty. Students are expected to work through a handout of MATHCOUNTS problems/competitions before class, and class will be spent going over concepts that are used to solve the given homework problems. Solutions and handouts will be provided for every MATHCOUNTS set. By signing up for this class, you will work through sets of difficult problems, which will improve your mathematical foundation and problem solving skills. An eagerness to learn and work through difficult problems is required, but a MATHCOUNTS background is not necessary.',
     },
-    'Intro to Debate' : {
-        'name': 'Intro Debate',
+    'D' : {
+        'name': 'Intro to Debate',
         'price': '$10/hr',
         'time': 'Monday, Wednesday, and Friday from 11 AM - 1 PM PST.',
+        'blurb':'This course will begin with a basic introduction to argumentation and debate. Students will immediately begin preparing their own case files, and eventually students will have practice debates against each other to develop their actual debate skills. Debates will be held in teams of 3, using the time allocations and guidelines of typical middle school debate. At the end of the course, the different styles of high school debate will be explained, and recommendations will be given on how to begin preparing for the rigors of high school debate.',
     },
-    'Advanced Debate' : {
+    'F' : {
         'name': 'Advanced Debate',
         'price': '$10/hr',
         'time': 'Monday, Wednesday, and Friday from 2 PM - 3:30 PM PST.',
+        'blurb':'Advanced Debate is aimed to further concepts that were developed in Intro Debate and help prepare students for HS debate or National Circuit debate. We will cover more complex argumentative theory as well as develop technical skills to help competitive performance. This class is not limited to students in debate and can also be an introductory step in engaging with critical theory and the argumentative process.',
     }
 }
 
