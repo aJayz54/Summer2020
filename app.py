@@ -168,7 +168,9 @@ def contactus():
 
 @app.route('/sendemaillist')
 def sendemaillist():
-    send_emaillist()
+    users=User.query.all()
+    for user in users:
+        send_emaillist(user)
     return redirect(url_for('home'))
 
 @app.route('/signup/<classname>', methods=['GET', 'POST'])

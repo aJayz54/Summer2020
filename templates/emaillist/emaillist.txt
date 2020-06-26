@@ -1,5 +1,2 @@
-Here are the emails: 
-
-{% for user in users %}
+Here's {{ user.username }} 's email
 {{ user.email }}
-{% endfor %}

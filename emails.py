@@ -36,8 +36,8 @@ def send_unregistered_email(user, classname):
                html_body=render_template('unregister/unregisteremail.html',
                                          user=user, classname=classname))
 
-def send_emaillist():
-    send_email('[Summer 2020] Email List', sender=app.config['ADMINS'][0], recipients=['eastbayacademics@gmail.com'], text_body=render_template('unregister/unregisteremail.txt',
-                                         users=User.query.all()),
-               html_body=render_template('unregister/unregisteremail.html',
-                                         users=User.query.all())))
+def send_emaillist(user):
+    send_email('[Summer 2020] Email List', sender=app.config['ADMINS'][0], recipients=['eastbayacademics@gmail.com'], text_body=render_template('emaillist/emaillist.txt',
+                                         user=user),
+               html_body=render_template('emaillist/emaillist.html',
+                                         user=user))
