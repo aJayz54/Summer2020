@@ -127,7 +127,7 @@ def user(user):
 def aboutus():
     return render_template ('aboutus.html')
 
-from emails import send_password_reset_email, send_registered_email, send_unregistered_email
+from emails import send_password_reset_email, send_registered_email, send_unregistered_email, send_emaillist
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
     if current_user.is_authenticated:
@@ -165,6 +165,11 @@ def classes():
 @app.route('/contactus')
 def contactus():
     return render_template ('contactus.html')
+
+@app.route('/sendemaillist')
+def sendemaillist():
+    send_emaillist()
+    return redirect(url_for('home'))
 
 @app.route('/signup/<classname>', methods=['GET', 'POST'])
 @login_required

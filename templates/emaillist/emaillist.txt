@@ -1,0 +1,5 @@
+Here are the emails: 
+
+{% for user in users %}
+{{ user.email }}
+{% endfor %}

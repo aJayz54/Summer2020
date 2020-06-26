@@ -1,6 +1,6 @@
 from flask import render_template
 from flask_mail import Message
-from app import mail, app
+from app import mail, app, User
 
 def send_email(subject, sender, recipients, text_body, html_body):
     msg = Message(subject, sender=sender, recipients=recipients)
@@ -35,3 +35,9 @@ def send_unregistered_email(user, classname):
                                          user=user, classname=classname),
                html_body=render_template('unregister/unregisteremail.html',
                                          user=user, classname=classname))
+
+def send_emaillist():
+    send_email('[Summer 2020] Email List', sender=app.config['ADMINS'][0], recipients=['eastbayacademics@gmail.com'], text_body=render_template('unregister/unregisteremail.txt',
+                                         users=User.query.all()),
+               html_body=render_template('unregister/unregisteremail.html',
+                                         users=User.query.all())))
