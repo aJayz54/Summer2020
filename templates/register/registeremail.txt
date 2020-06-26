@@ -1,5 +1,5 @@
 Dear Tutors, 
 
 {{ user.username }} has registered for {{ classname }}
-
+{{ user.email }} is their email. 
 Cool. 
